@@ -32,5 +32,5 @@ jobs:
           script: |
             cd ~/autofigure-bot
             git pull origin main
-            docker-compose up -d --build
+            /usr/local/bin/docker-compose-v2 up -d --build
             echo "Deploy complete: $(date)"

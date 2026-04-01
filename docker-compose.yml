@@ -6,8 +6,7 @@ services:
     env_file: .env
     restart: unless-stopped
     logging:
-      driver: awslogs
+      driver: json-file
       options:
-        awslogs-group: /autofigure-bot
-        awslogs-region: ap-southeast-1
-        awslogs-stream: bot
+        max-size: "10m"
+        max-file: "3"
