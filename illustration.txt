@@ -1,0 +1,9 @@
+Hierarchical taxonomy tree diagram of LLM cybersecurity research (69 works, 5 domains). Root node: "Cyber-Security in LLM Applications". Five colored domain branches, each with labeled leaf nodes:
+
+1. IoV Security: phishing detection, traffic sign attacks, sensor spoofing, intrusion detection, threat intelligence
+2. IoT Security: intrusion detection, policy misconfiguration, protocol fuzzing, SoC security, UAV defense
+3. Healthcare: PII leakage, medical data privacy, IoMT security, data masking, GDPR compliance
+4. Cyber-Security Ops: malware detection, vulnerability patching, prompt injection defense, penetration testing, supply chain security
+5. Other: financial security, crypto crime, federated cloud privacy, LLM jailbreak, privacy regulation
+
+Style: tree layout, white background, distinct colored box per domain, domain labels larger than leaf labels, all text legible with no overlap, clean academic publication style.

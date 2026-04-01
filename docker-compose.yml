@@ -1,0 +1,13 @@
+version: "3.9"
+
+services:
+  bot:
+    build: .
+    env_file: .env
+    restart: unless-stopped
+    logging:
+      driver: awslogs
+      options:
+        awslogs-group: /autofigure-bot
+        awslogs-region: ap-southeast-1
+        awslogs-stream: bot

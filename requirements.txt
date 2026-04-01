@@ -1,0 +1,23 @@
+# AutoFigure runtime requirements
+# Python 3.11+
+
+# Telegram Bot
+python-telegram-bot>=21.0,<22.0
+python-dotenv>=1.0,<2.0
+
+# AWS (DynamoDB logging)
+boto3>=1.34,<2.0
+
+# API clients / HTTP
+requests>=2.31,<3.0
+openai>=1.0,<2.0
+google-genai>=1.0,<2.0
+
+# Image processing
+Pillow>=10.0,<12.0
+
+# Backend (FastAPI service — kept for reference)
+fastapi>=0.110,<1.0
+uvicorn[standard]>=0.24,<1.0
+pydantic>=2.6,<3.0
+python-multipart>=0.0.9,<1.0
