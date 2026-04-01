@@ -25,7 +25,7 @@ from telegram.ext import (
     filters,
 )
 
-from . import db, figure_service
+from . import db, figure_service, s3
 
 logger = logging.getLogger(__name__)
 
@@ -144,13 +144,14 @@ async def receive_text(update: Update, context: ContextTypes.DEFAULT_TYPE) -> in
         await progress_task
         saved = _save_output(png_bytes, "figure")
         logger.info("Saved %s", saved)
+        s3_url = s3.upload_figure(png_bytes, user_id)
         await status_msg.delete()
         await update.message.reply_document(
             document=io.BytesIO(png_bytes),
             filename="figure.png",
             caption="Figure generated from paper text.",
         )
-        db.log_request(user_id, method_text, "success", has_reference=False)
+        db.log_request(user_id, method_text, "success", has_reference=False, s3_url=s3_url)
     except Exception as exc:
         stop_event.set()
         await progress_task
@@ -203,13 +204,14 @@ async def receive_text_after_photo(update: Update, context: ContextTypes.DEFAULT
         await progress_task
         saved = _save_output(png_bytes, "figure_ref")
         logger.info("Saved %s", saved)
+        s3_url = s3.upload_figure(png_bytes, user_id)
         await status_msg.delete()
         await update.message.reply_document(
             document=io.BytesIO(png_bytes),
             filename="figure.png",
             caption="Style-matched figure generated from paper text.",
         )
-        db.log_request(user_id, method_text, "success", has_reference=True)
+        db.log_request(user_id, method_text, "success", has_reference=True, s3_url=s3_url)
     except Exception as exc:
         stop_event.set()
         await progress_task

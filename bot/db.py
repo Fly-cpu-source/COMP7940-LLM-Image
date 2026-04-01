@@ -52,22 +52,24 @@ def log_request(
     *,
     has_reference: bool = False,
     job_id: Optional[str] = None,
+    s3_url: Optional[str] = None,
 ) -> None:
     """Write one generation record to DynamoDB. Fails silently."""
     table = _get_table()
     if table is None:
         return
+    item: dict = {
+        "user_id": str(user_id),
+        "timestamp": datetime.now(timezone.utc).isoformat(),
+        "method_text": method_text[:500],
+        "has_reference": has_reference,
+        "status": status,
+        "job_id": job_id or str(uuid.uuid4()),
+    }
+    if s3_url:
+        item["s3_url"] = s3_url
     try:
-        table.put_item(
-            Item={
-                "user_id": str(user_id),
-                "timestamp": datetime.now(timezone.utc).isoformat(),
-                "method_text": method_text[:500],
-                "has_reference": has_reference,
-                "status": status,
-                "job_id": job_id or str(uuid.uuid4()),
-            }
-        )
+        table.put_item(Item=item)
     except Exception as exc:
         logger.warning("DynamoDB put_item failed: %s", exc)
 
