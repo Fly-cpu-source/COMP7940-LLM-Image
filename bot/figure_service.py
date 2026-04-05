@@ -25,14 +25,19 @@ _DIRECT_PROMPT = (
     "{paper_text}\n\n"
     "The figure should be clean, engaging, and use academic journal style with clear diagrams. "
     "Do not include any figure number, caption, or title inside the image."
+    "- CRITICAL: Strictly proofread all generated text labels. Do not invent spellings. Only use the exact terminology provided in the text (e.g., 'TensorFlow', 'Infrastructure')."
+    "- Ensure generous whitespace and padding between all blocks and text. The layout must feel spacious and uncluttered."
+    "- You may slightly condense or abbreviate the text labels if necessary to maintain a clean visual balance, but keep the core terminology."
 )
 
 _REFERENCE_PROMPT = (
     "Generate a figure that visualizes the method described below.\n\n"
-    "Closely follow the visual style of the provided reference (line style, color palette, "
-    "shading, icon style, arrow aesthetics). Layout and structure may differ freely.\n\n"
     "Method:\n\"\"\"\n{paper_text}\n\"\"\"\n\n"
-    "Do not include any figure number, caption, or title inside the image."
+    "Style & Layout constraints:\n"
+    "- Do not include any figure number, caption, or title inside the image.\n"
+    "- CRITICAL TEXT: Strictly check spelling to match the provided content; DO NOT introduce any spelling errors. If the provided text content is too long, you MUST extract only the core keywords/phrases to generate the image.\n"
+    "- CRITICAL SPACE: Without deleting core keywords, if the content is extensive, appropriately widen the canvas aspect ratio to ensure ALL content is displayed in a SINGLE horizontal line. The image MUST NOT be overcrowded; provide appropriate generous whitespace and breathing room around and inside the blocks.\n"
+    "- CRITICAL STYLE: Extract the core style/colors from the reference image, but elevate it to a PREMIUM, GORGEOUS, and HIGH-END academic infographic style (e.g., Nature/Science journal quality). You MUST incorporate elegant, minimalist, and context-relevant ICONS for each core block to make it highly engaging and intuitive. Use refined aesthetics (e.g., high-quality vector finish, subtle elegant shading) while strictly maintaining a UNIFIED and COHESIVE visual style. Use a consistent color palette (e.g., monochromatic or strict two-tone) for blocks of the same logical level. DO NOT use random, chaotic, or 'rainbow' colors. Ensure pure white background and straight orthogonal lines."
 )
 
 
