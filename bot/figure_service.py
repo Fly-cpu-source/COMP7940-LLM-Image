@@ -20,18 +20,14 @@ GEMINI_IMAGE_MODEL = os.getenv("GEMINI_MODEL", "gemini-3-pro-image-preview")
 
 
 _DIRECT_PROMPT = (
-    "Generate a premium, ultra-minimalist architecture diagram for a top-tier computer science journal.\n\n"
-    "CRITICAL VISUAL STYLE (MUST OBEY):\n"
-    "* COLOR PALETTE: STRICTLY MONOCHROMATIC. Use ONLY shades of Deep Blue and Ice Blue. Absolutely NO orange, red, or green.\n"
-    "* AESTHETICS: Modern sleek flat vector art. Pure white background. Wide margins and extreme generous whitespace.\n"
-    "* SHAPES: Sharp rectangles with subtle drop shadows.\n\n"
-    "CRITICAL TEXT GENERATION RULES (ANTI-HALLUCINATION):\n"
-    "* WARNING: You are highly prone to spelling errors. To prevent this, you are STRICTLY FORBIDDEN from writing any phrases longer than 2 words.\n"
-    "* RULE 1: DO NOT copy sentences from the input text.\n"
-    "* RULE 2: Use ONLY universal acronyms (e.g., 'NLU', 'LLM', 'GPU') or absolute core nouns (e.g., 'Model', 'Application').\n"
-    "* RULE 3: If you draw a text block containing more than 3 words, you fail.\n\n"
-    "Input Text to Map:\n"
-    "\"\"\"\n{paper_text}\n\"\"\"\n"
+    "Generate a professional academic journal style figure for the paper below, "
+    "visualizing the method it proposes.\n\n"
+    "{paper_text}\n\n"
+    "The figure should be clean, engaging, and use academic journal style with clear diagrams. "
+    "Do not include any figure number, caption, or title inside the image."
+    "- CRITICAL: Strictly proofread all generated text labels. Do not invent spellings. Only use the exact terminology provided in the text (e.g., 'TensorFlow', 'Infrastructure')."
+    "- Ensure generous whitespace and padding between all blocks and text. The layout must feel spacious and uncluttered."
+    "- You may slightly condense or abbreviate the text labels if necessary to maintain a clean visual balance, but keep the core terminology."
 )
 
 _REFERENCE_PROMPT = (
