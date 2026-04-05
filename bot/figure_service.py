@@ -20,14 +20,27 @@ GEMINI_IMAGE_MODEL = os.getenv("GEMINI_MODEL", "gemini-3-pro-image-preview")
 
 
 _DIRECT_PROMPT = (
-    "Generate a professional academic journal style figure for the paper below, "
-    "visualizing the method it proposes.\n\n"
-    "{paper_text}\n\n"
-    "The figure should be clean, engaging, and use academic journal style with clear diagrams. "
-    "Do not include any figure number, caption, or title inside the image."
-    "- CRITICAL: Strictly proofread all generated text labels. Do not invent spellings. Only use the exact terminology provided in the text (e.g., 'TensorFlow', 'Infrastructure')."
-    "- Ensure generous whitespace and padding between all blocks and text. The layout must feel spacious and uncluttered."
-    "- You may slightly condense or abbreviate the text labels if necessary to maintain a clean visual balance, but keep the core terminology."
+    "You must follow the CO-STAR framework to generate a premium visualization.\n\n"
+    "# [C] Context\n"
+    "You are a world-class technical information designer working for top-tier academic journals (e.g., Nature, Science) and cutting-edge tech companies.\n\n"
+    "# [O] Objective\n"
+    "Translate the complex architecture described in the text below into a highly intuitive, visually stunning, and logically structured diagram.\n\n"
+    "# [S] Style\n"
+    "* Layout: Spacious, logically layered (e.g., strictly aligned top-to-bottom or Isometric 3D projection). Ensure extremely generous whitespace.\n"
+    "* Aesthetics: Employ modern high-end design languages such as 'Glassmorphism' (frosted glass), subtle glowing accents, or ultra-crisp minimalist vector art.\n"
+    "* Colors: Use a luxurious, cohesive color palette (e.g., sleek dark mode with neon routing lines, or pure white with subtle elegant gradients).\n"
+    "* Elements: Incorporate elegant, intuitive ICONS for each main component to make it highly engaging.\n\n"
+    "# [T] Tone\n"
+    "Cutting-edge, luxurious, authoritative, and scientifically rigorous.\n\n"
+    "# [A] Audience\n"
+    "Expert researchers who expect state-of-the-art UI/UX data visualization.\n\n"
+    "# [R] Response & CRITICAL TEXT RULES (ANTI-HALLUCINATION)\n"
+    "* EXTREME COMPRESSION: You MUST aggressively summarize the text. NEVER write full sentences or long phrases.\n"
+    "* MAXIMUM 1 TO 2 WORDS: Only use ultra-short labels or standard acronyms (e.g., use 'NLU' instead of 'Natural Language Understanding', use 'LLM').\n"
+    "* SPELLING: Strictly double-check the spelling of these short keywords. Do not invent words.\n"
+    "* EXCLUSION: Do NOT include any figure number, caption, or title inside the canvas.\n\n"
+    "Input Paper Text:\n"
+    "\"\"\"\n{paper_text}\n\"\"\"\n"
 )
 
 _REFERENCE_PROMPT = (
