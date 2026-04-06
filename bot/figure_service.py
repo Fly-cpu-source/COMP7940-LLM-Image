@@ -28,7 +28,9 @@ _DIRECT_PROMPT = (
     "- CRITICAL: Strictly proofread all generated text labels. Do not invent spellings. Only use the exact terminology provided in the text (e.g., 'TensorFlow', 'Infrastructure').\n"
     "- Ensure generous whitespace and padding between all blocks and text. The layout must feel spacious and uncluttered.\n"
     "- You may slightly condense or abbreviate the text labels if necessary to maintain a clean visual balance, but keep the core terminology.\n"
-    "- CRITICAL VISUALS: Include meaningful icons, diagrams, arrows, and visual elements to illustrate each component. Do not rely on text boxes alone — each key concept should have a relevant icon or graphic symbol to make the figure visually rich and intuitive."
+    "- CRITICAL DIAGRAMS: The figure MUST contain rich visual elements. Include multiple connected components such as boxes, arrows, flowcharts, architecture diagrams, or data-flow illustrations that represent the method's pipeline or structure. Do NOT produce a figure with only text or minimal shapes — the diagram density should match a typical Nature/Science paper system overview figure.\n"
+    "- Use context-relevant icons or small illustrations inside blocks where appropriate to make the figure intuitive and visually engaging.\n"
+    "- Pure white background, straight orthogonal arrows, unified color palette (2–3 colors max)."
 )
 
 _REFERENCE_PROMPT = (
