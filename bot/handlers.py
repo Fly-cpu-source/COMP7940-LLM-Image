@@ -34,6 +34,27 @@ GEMINI_API_KEY: str = os.getenv("GEMINI_API_KEY", "")
 OUTPUT_DIR = Path(__file__).resolve().parent.parent / "output"
 OUTPUT_DIR.mkdir(exist_ok=True)
 
+# ── Rate limiting ─────────────────────────────────────────────────────────────
+# Max requests per user within the time window
+RATE_LIMIT = int(os.getenv("RATE_LIMIT", "3"))          # max requests
+RATE_WINDOW = int(os.getenv("RATE_WINDOW_SECONDS", "60"))  # per N seconds
+
+_user_timestamps: dict[int, list[datetime.datetime]] = {}
+
+
+def _is_rate_limited(user_id: int) -> bool:
+    now = datetime.datetime.utcnow()
+    window_start = now - datetime.timedelta(seconds=RATE_WINDOW)
+    history = _user_timestamps.get(user_id, [])
+    history = [t for t in history if t > window_start]
+    if len(history) >= RATE_LIMIT:
+        _user_timestamps[user_id] = history
+        return True
+    history.append(now)
+    _user_timestamps[user_id] = history
+    return False
+
+
 # ConversationHandler states
 MODE_SELECT, WAIT_TEXT, WAIT_PHOTO, WAIT_TEXT_AFTER_PHOTO = range(4)
 
@@ -131,6 +152,12 @@ async def receive_text(update: Update, context: ContextTypes.DEFAULT_TYPE) -> in
     method_text = update.message.text.strip()
     user_id = update.effective_user.id
 
+    if _is_rate_limited(user_id):
+        await update.message.reply_text(
+            f"Too many requests. You can generate up to {RATE_LIMIT} figures per {RATE_WINDOW}s. Please wait."
+        )
+        return ConversationHandler.END
+
     status_msg = await update.message.reply_text("⏳ Generating figure...")
 
     stop_event = asyncio.Event()
@@ -187,6 +214,12 @@ async def receive_text_after_photo(update: Update, context: ContextTypes.DEFAULT
 
     if not ref_bytes:
         await update.message.reply_text("Reference image lost. Please start over with /generate.")
+        return ConversationHandler.END
+
+    if _is_rate_limited(user_id):
+        await update.message.reply_text(
+            f"Too many requests. You can generate up to {RATE_LIMIT} figures per {RATE_WINDOW}s. Please wait."
+        )
         return ConversationHandler.END
 
     status_msg = await update.message.reply_text("⏳ Generating figure...")
