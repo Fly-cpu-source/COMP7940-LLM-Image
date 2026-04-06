@@ -12,6 +12,7 @@ import logging
 import os
 from pathlib import Path
 
+import boto3
 from dotenv import load_dotenv
 
 # Load .env from the COMP7940 directory
@@ -34,6 +35,24 @@ logging.basicConfig(
     level=logging.INFO,
 )
 logger = logging.getLogger(__name__)
+
+# CloudWatch log handler (fails silently if credentials missing)
+try:
+    import watchtower
+    _cw_client = boto3.client(
+        "logs",
+        region_name=os.getenv("AWS_REGION", "ap-southeast-1"),
+    )
+    _cw_handler = watchtower.CloudWatchLogHandler(
+        log_group="/autofigure/bot",
+        stream_name="bot-logs",
+        boto3_client=_cw_client,
+    )
+    _cw_handler.setFormatter(logging.Formatter("%(asctime)s [%(levelname)s] %(name)s: %(message)s"))
+    logging.getLogger().addHandler(_cw_handler)
+    logger.info("CloudWatch logging enabled.")
+except Exception as _cw_exc:
+    logger.warning("CloudWatch logging unavailable: %s", _cw_exc)
 
 
 def main() -> None:
