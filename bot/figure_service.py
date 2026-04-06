@@ -24,10 +24,11 @@ _DIRECT_PROMPT = (
     "visualizing the method it proposes.\n\n"
     "{paper_text}\n\n"
     "The figure should be clean, engaging, and use academic journal style with clear diagrams. "
-    "Do not include any figure number, caption, or title inside the image."
-    "- CRITICAL: Strictly proofread all generated text labels. Do not invent spellings. Only use the exact terminology provided in the text (e.g., 'TensorFlow', 'Infrastructure')."
-    "- Ensure generous whitespace and padding between all blocks and text. The layout must feel spacious and uncluttered."
-    "- You may slightly condense or abbreviate the text labels if necessary to maintain a clean visual balance, but keep the core terminology."
+    "Do not include any figure number, caption, or title inside the image.\n"
+    "- CRITICAL: Strictly proofread all generated text labels. Do not invent spellings. Only use the exact terminology provided in the text (e.g., 'TensorFlow', 'Infrastructure').\n"
+    "- Ensure generous whitespace and padding between all blocks and text. The layout must feel spacious and uncluttered.\n"
+    "- You may slightly condense or abbreviate the text labels if necessary to maintain a clean visual balance, but keep the core terminology.\n"
+    "- CRITICAL VISUALS: Include meaningful icons, diagrams, arrows, and visual elements to illustrate each component. Do not rely on text boxes alone — each key concept should have a relevant icon or graphic symbol to make the figure visually rich and intuitive."
 )
 
 _REFERENCE_PROMPT = (
