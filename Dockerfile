@@ -1,3 +1,4 @@
+# AutoFigure Bot — Python 3.11 slim image
 FROM python:3.11-slim
 
 WORKDIR /app
