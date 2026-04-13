@@ -2,7 +2,7 @@
 
 A Telegram bot that generates publication-quality academic figures from paper descriptions using Google Gemini.
 
-## Quickstart for Teammates
+## Quickstart 
 
 No local environment setup needed. Just clone, edit, and push — CI/CD handles the rest.
 
