@@ -114,7 +114,7 @@ Required GitHub Secrets (already configured):
 | Layer | Technology |
 |-------|-----------|
 | Interface | Telegram Bot API (python-telegram-bot v21) |
-| AI Engine | Google Gemini (gemini-2.5-flash-image) |
+| AI Engine | Google Gemini (gemini-2.5-flash-image / gemini-3-pro-image-preview) |
 | Deployment | AWS EC2 t2.micro + Docker Compose |
 | Database | AWS DynamoDB (request logging) |
 | Storage | AWS S3 (figure storage) |
