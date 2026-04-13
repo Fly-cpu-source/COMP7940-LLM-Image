@@ -45,12 +45,17 @@ After pushing, wait ~1 minute for the deployment to complete, then test your cha
 
 ```
 ├── bot/
-│   ├── main.py            # Entry point
-│   ├── handlers.py        # Telegram command handlers
-│   ├── figure_service.py  # Gemini image generation
-│   └── db.py              # DynamoDB logging
+│   ├── main.py            # Entry point, CloudWatch logging setup
+│   ├── handlers.py        # Telegram command & conversation handlers
+│   ├── figure_service.py  # Gemini API image generation
+│   ├── rate_limiter.py    # Redis-backed per-user rate limiting
+│   ├── s3.py              # AWS S3 diagram upload
+│   └── db.py              # DynamoDB request logging
+├── .github/
+│   └── workflows/
+│       └── deploy.yml     # CI/CD: auto-deploy on push to main
 ├── Dockerfile
-├── docker-compose.yml
+├── docker-compose.yml     # Bot + Redis containers
 ├── requirements.txt
 └── .env                   # Not in repo — only needed to run locally
 ```
