@@ -40,7 +40,7 @@ cd COMP7940-LLM-Image
 
 ```bash
 git add .
-git commit -m "your message"
+git commit -m "revision illustration"
 git push origin main
 ```
 
