@@ -61,7 +61,7 @@ def log_request(
     item: dict = {
         "user_id": str(user_id),
         "timestamp": datetime.now(timezone.utc).isoformat(),
-        "method_text": method_text[:500],
+        "method_text": method_text,
         "has_reference": has_reference,
         "status": status,
         "job_id": job_id or str(uuid.uuid4()),
