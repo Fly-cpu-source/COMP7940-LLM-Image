@@ -8,6 +8,33 @@ A cloud-native Telegram bot that generates publication-quality academic figures 
 
 ---
 
+## Demo Preview
+
+<table>
+  <tr>
+    <td align="center">
+      <strong>Telegram Bot Interface</strong><br>
+      <img src="telegram.png" alt="Telegram bot interface" width="420">
+    </td>
+    <td align="center">
+      <strong>Mode 1 — Text Only</strong><br>
+      <img src="mode1.png" alt="Mode 1 text only generation result" width="420">
+    </td>
+  </tr>
+  <tr>
+    <td align="center">
+      <strong>Mode 2 — Reference Image</strong><br>
+      <img src="mode2.png" alt="Mode 2 reference image generation result" width="420">
+    </td>
+    <td align="center">
+      <strong>Usage Limitation</strong><br>
+      <img src="limitation.png" alt="Bot usage limitation message" width="420">
+    </td>
+  </tr>
+</table>
+
+---
+
 ## Bot Commands
 
 | Command | Description |
